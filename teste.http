@@ -1,0 +1,106 @@
+### Cadastrar um novo item de leilão
+POST http://localhost:8080/itemdeleilao
+Content-Type: application/json
+
+{
+  "nome": "Bicicleta",
+  "valorMinimo": 100.0,
+  "leilaoAberto": true
+}
+
+### Listar todos os itens de leilão
+GET http://localhost:8080/itemdeleilao
+
+### Buscar um item de leilão por ID
+GET http://localhost:8080/itemdeleilao/{id}
+
+### Atualizar um item de leilão
+PUT http://localhost:8080/itemdeleilao/{id}
+Content-Type: application/json
+
+{
+  "nome": "Bicicleta Atualizada",
+  "valorMinimo": 120.0,
+  "leilaoAberto": false
+}
+
+### Deletar um item de leilão
+DELETE http://localhost:8080/itemdeleilao/{id}
+
+### Cadastrar um novo participante
+POST http://localhost:8080/participante
+Content-Type: application/json
+
+{
+  "nome": "João",
+  "cpf": "12345678900"
+}
+
+### Listar todos os participantes
+GET http://localhost:8080/participante
+
+### Buscar um participante por ID
+GET http://localhost:8080/participante/{id}
+
+### Atualizar um participante
+PUT http://localhost:8080/participante/{id}
+Content-Type: application/json
+
+{
+  "nome": "João Atualizado",
+  "cpf": "12345678900"
+}
+
+### Deletar um participante
+DELETE http://localhost:8080/participante/{id}
+
+### Cadastrar um novo lance
+POST http://localhost:8080/lance
+Content-Type: application/json
+
+{
+  "valor": 200.0,
+  "participante": {
+    "id": 1
+  },
+  "itemDeLeilao": {
+    "id": 1
+  }
+}
+
+### Listar todos os lances
+GET http://localhost:8080/lance
+
+### Buscar um lance por ID
+GET http://localhost:8080/lance/{id}
+
+### Atualizar um lance
+PUT http://localhost:8080/lance/{id}
+Content-Type: application/json
+
+{
+  "valor": 250.0,
+  "participante": {
+    "id": 1
+  },
+  "itemDeLeilao": {
+    "id": 1
+  }
+}
+
+### Deletar um lance
+DELETE http://localhost:8080/lance/{id}
+
+### Registrar um lance em um item de leilão
+POST http://localhost:8080/itemdeleilao/{id}/lance
+Content-Type: application/json
+
+{
+  "valor": 150.0,
+  "participante": {
+    "id": 1
+  }
+}
+
+### Finalizar um leilão
+PATCH http://localhost:8080/itemdeleilao/{id}/finalizar
