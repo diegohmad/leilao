@@ -3,52 +3,51 @@ package br.edu.iftm.leilao.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.edu.iftm.leilao.model.ItemDeLeilao;
+import br.edu.iftm.leilao.model.Lance;
 import br.edu.iftm.leilao.service.ItemDeLeilaoService;
 
 @RestController
+@RequestMapping("/itemdeleilao")
 public class ItemDeLeilaoController {
-
-
-//     {DELETE [/itemdeleilao/{id}]}: delete(Long)
-//     {GET [/itemdeleilao/{id}]}: item(Long)
-//     {PUT [/itemdeleilao/{id}]}: atualiza(Long,ItemDeLeilao)
-//     {POST [/itemdeleilao]}: novo(ItemDeLeilao)
-//     {GET [/itemdeleilao]}: itens()
 
     @Autowired
     private ItemDeLeilaoService service;
 
     @DeleteMapping("/{id}")
-    public void delete (@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         service.delete(id);
-    }    
+    }
 
     @GetMapping("/{id}")
-    public ItemDeLeilao get (@PathVariable Long id) {
+    public ItemDeLeilao get(@PathVariable Long id) {
         return service.get(id);
     }
-    
+
     @PutMapping("/{id}")
-    public ItemDeLeilao update (@PathVariable Long id, @RequestBody ItemDeLeilao item) {
+    public ItemDeLeilao update(@PathVariable Long id, @RequestBody ItemDeLeilao item) {
         return service.update(id, item);
     }
 
     @PostMapping
-    public ItemDeLeilao novo (ItemDeLeilao item) {
+    public ItemDeLeilao novo(@RequestBody ItemDeLeilao item) {
         return service.salva(item);
     }
 
     @GetMapping
-    public List<ItemDeLeilao> itens () {
+    public List<ItemDeLeilao> itens() {
         return service.itens();
+    }
+
+    @PostMapping("/{id}/lance")
+    public Lance registrarLance(@PathVariable Long id, @RequestBody Lance lance) {
+        return service.registrarLance(id, lance);
+    }
+
+    @PatchMapping("/{id}/finalizar")
+    public Lance finalizarLeilao(@PathVariable Long id) {
+        return service.finalizarLeilao(id);
     }
 }

@@ -34,4 +34,8 @@ public class LanceService {
         return lista;
     }
     
+    public Lance salva(Lance lance) {
+        return repo.save(lance);
+    }
+
 }

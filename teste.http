@@ -3,7 +3,7 @@ POST http://localhost:8080/itemdeleilao
 Content-Type: application/json
 
 {
-  "nome": "Bicicleta",
+  "nome": "GAME",
   "valorMinimo": 100.0,
   "leilaoAberto": true
 }
@@ -12,16 +12,16 @@ Content-Type: application/json
 GET http://localhost:8080/itemdeleilao
 
 ### Buscar um item de leilão por ID
-GET http://localhost:8080/itemdeleilao/{id}
+GET http://localhost:8080/itemdeleilao/2
 
 ### Atualizar um item de leilão
-PUT http://localhost:8080/itemdeleilao/{id}
+PUT http://localhost:8080/itemdeleilao/2
 Content-Type: application/json
 
 {
   "nome": "Bicicleta Atualizada",
   "valorMinimo": 120.0,
-  "leilaoAberto": false
+  "leilaoAberto": true
 }
 
 ### Deletar um item de leilão
@@ -32,7 +32,7 @@ POST http://localhost:8080/participante
 Content-Type: application/json
 
 {
-  "nome": "João",
+  "nome": "joao",
   "cpf": "12345678900"
 }
 
@@ -40,10 +40,10 @@ Content-Type: application/json
 GET http://localhost:8080/participante
 
 ### Buscar um participante por ID
-GET http://localhost:8080/participante/{id}
+GET http://localhost:8080/participante/1
 
 ### Atualizar um participante
-PUT http://localhost:8080/participante/{id}
+PUT http://localhost:8080/participante/1
 Content-Type: application/json
 
 {
@@ -54,19 +54,6 @@ Content-Type: application/json
 ### Deletar um participante
 DELETE http://localhost:8080/participante/{id}
 
-### Cadastrar um novo lance
-POST http://localhost:8080/lance
-Content-Type: application/json
-
-{
-  "valor": 200.0,
-  "participante": {
-    "id": 1
-  },
-  "itemDeLeilao": {
-    "id": 1
-  }
-}
 
 ### Listar todos os lances
 GET http://localhost:8080/lance
@@ -92,15 +79,15 @@ Content-Type: application/json
 DELETE http://localhost:8080/lance/{id}
 
 ### Registrar um lance em um item de leilão
-POST http://localhost:8080/itemdeleilao/{id}/lance
+POST http://localhost:8080/itemdeleilao/1/lance
 Content-Type: application/json
 
 {
-  "valor": 150.0,
+  "valor": 250.0,
   "participante": {
-    "id": 1
+    "id": 2
   }
 }
 
 ### Finalizar um leilão
-PATCH http://localhost:8080/itemdeleilao/{id}/finalizar
+PATCH http://localhost:8080/itemdeleilao/1/finalizar

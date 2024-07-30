@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.iftm.leilao.model.Participante;
 import br.edu.iftm.leilao.service.ParticipanteService;
 
 @RestController
+@RequestMapping("/participante")
 public class ParticipanteController {
     
     // {DELETE [/participante/{id}]}: delete(Long)
@@ -43,7 +45,7 @@ public class ParticipanteController {
     }
 
     @PostMapping
-    public Participante novo ( Participante participante) {
+    public Participante novo (@RequestBody Participante participante) {
        return service.salva(participante);
     }
 
